@@ -45,12 +45,13 @@ function onDataReceived(text) {
     //if the text variable is list then the list function will be called
     list();
   } else if (txt.startsWith("add")) {
-    //this will check if the user's input is add;
+    //this will check if the user's input starts with add;
     const newTask = txt.substring(3).trim(); //if it's true it will assign the value after add to the variable newTask; substring(3) to remove the first 3 letters = add
     add(newTask); //to pass the newTask as an argument to add function
   } else if (txt.startsWith("remove")) {
-    const removedTask = txt.trim();
-    remove(removedTask);
+    //this will check if the user's input starts with remove
+    const removedTask = txt.trim(); //if its true it will remove whitespaces and assign it to removedTask
+    remove(removedTask); // calls remove function and pass removedTask as arg
   } else {
     unknownCommand(text);
   }
@@ -93,7 +94,14 @@ function quit() {
  */
 function help() {
   console.log(
-    "help: display list of all possible commands \nexit or quit: exits the app \nhello: hello + your input!"
+    "help: display list of all possible commands",
+    "\nexit or quit: exits the app",
+    "\nhello(text): hello + (text)!",
+    "\nlist: display the list",
+    "\nadd(newTask): add a new task to the list",
+    "\nremove: remove the last task from the list",
+    "\nremove 1: remove the first task from the list",
+    "\nremove 2: remove the second task from the list"
   );
 }
 
@@ -132,18 +140,15 @@ function add(newTask) {
  * @returns {void}
  */
 function remove(removedTask) {
-  removedTask = removedTask.trim();
   if (removedTask === "remove") {
-    listItems.splice(listItems.length - 1, 1);
+    listItems.splice(listItems.length - 1, 1); //removes last element from array
     console.log(listItems);
   } else if (removedTask === "remove 1") {
-    listItems.splice(0, 1);
+    listItems.splice(0, 1); //removes first element from the array
     console.log(listItems);
   } else if (removedTask === "remove 2") {
-    listItems.splice(1, 1);
+    listItems.splice(1, 1); //removes second element from the array
     console.log(listItems);
-  } else {
-    console.log("Specify which task to be removed");
   }
 }
 
