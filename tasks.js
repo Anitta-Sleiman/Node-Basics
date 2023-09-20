@@ -40,6 +40,9 @@ function onDataReceived(text) {
     hello(text.replace("\n", "")); //it will replace the \n from the line
   } else if (text === "help\n") {
     help();
+  } else if (text === "list\n") {
+    //if the text variable is list then the list function will be called
+    list();
   } else {
     unknownCommand(text);
   }
@@ -84,6 +87,33 @@ function help() {
   console.log(
     "help: display list of all possible commands \nexit or quit: exits the app \nhello: hello + your input!"
   );
+}
+
+/**
+ * add function
+ *
+ * @returns {void}
+ */
+function add() {}
+
+/**
+ * remove function
+ *
+ * @returns {void}
+ */
+function remove() {}
+
+const listItems = ["buy bread", "do the exercises", "eat shawarma at 6"]; //created an array
+/**
+ * list function
+ *
+ * @returns {void}
+ */
+function list() {
+  listItems.map((item, index) => {
+    // map will iterate over each element in the 'listItems
+    console.log(index + 1 + " - [ ] " + item);
+  });
 }
 
 // The following line starts the application
