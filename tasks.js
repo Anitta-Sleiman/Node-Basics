@@ -48,6 +48,9 @@ function onDataReceived(text) {
     //this will check if the user's input is add;
     const newTask = txt.substring(3).trim(); //if it's true it will assign the value after add to the variable newTask; substring(3) to remove the first 3 letters = add
     add(newTask); //to pass the newTask as an argument to add function
+  } else if (txt.startsWith("remove")) {
+    const removedTask = txt.trim();
+    remove(removedTask);
   } else {
     unknownCommand(text);
   }
@@ -94,13 +97,6 @@ function help() {
   );
 }
 
-/**
- * remove function
- *
- * @returns {void}
- */
-function remove() {}
-
 const listItems = ["buy bread", "do the exercises", "eat shawarma at 6"]; //created an array
 /**
  * list function
@@ -127,6 +123,27 @@ function add(newTask) {
     console.log(newTask + " is added");
   } else {
     console.log("Error! Please add a task!"); //if nothing is inserted, the user will be alerted to add a task
+  }
+}
+
+/**
+ * remove function
+ *
+ * @returns {void}
+ */
+function remove(removedTask) {
+  removedTask = removedTask.trim();
+  if (removedTask === "remove") {
+    listItems.splice(listItems.length - 1, 1);
+    console.log(listItems);
+  } else if (removedTask === "remove 1") {
+    listItems.splice(0, 1);
+    console.log(listItems);
+  } else if (removedTask === "remove 2") {
+    listItems.splice(1, 1);
+    console.log(listItems);
+  } else {
+    console.log("Specify which task to be removed");
   }
 }
 
