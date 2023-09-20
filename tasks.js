@@ -74,7 +74,7 @@ function quit() {
 }
 
 /**
- * help - lists all the possible commands
+ * Display all the possible commands
  *
  * @returns {void}
  */
