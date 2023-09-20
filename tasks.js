@@ -34,6 +34,7 @@ function startApp(name) {
 function onDataReceived(text) {
   const trimText = text.trim().split(" ")[0]; // this will remove the space then split it to take the first index and assign it to new variable
   // console.log(text.trim().split(" ")[0]);
+  const txt = text.trim(); // the trim will remove the space from the text and assign it to txt
   if (text === "quit\n" || text === "exit\n") {
     quit();
   } else if (trimText === "hello") {
@@ -43,6 +44,10 @@ function onDataReceived(text) {
   } else if (text === "list\n") {
     //if the text variable is list then the list function will be called
     list();
+  } else if (txt.startsWith("add")) {
+    //this will check if the user's input is add;
+    const newTask = txt.substring(3).trim(); //if it's true it will assign the value after add to the variable newTask; substring(3) to remove the first 3 letters = add
+    add(newTask); //to pass the newTask as an argument to add function
   } else {
     unknownCommand(text);
   }
@@ -90,13 +95,6 @@ function help() {
 }
 
 /**
- * add function
- *
- * @returns {void}
- */
-function add() {}
-
-/**
  * remove function
  *
  * @returns {void}
@@ -114,6 +112,22 @@ function list() {
     // map will iterate over each element in the 'listItems
     console.log(index + 1 + " - [ ] " + item);
   });
+}
+
+/**
+ * add function
+ *
+ * @returns {void}
+ */
+function add(newTask) {
+  //we passed argument newTask
+  if (newTask) {
+    //check if newTask has a value
+    listItems.push(newTask); //this will push the added input to the array
+    console.log(newTask + " is added");
+  } else {
+    console.log("Error! Please add a task!"); //if nothing is inserted, the user will be alerted to add a task
+  }
 }
 
 // The following line starts the application
