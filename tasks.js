@@ -32,12 +32,12 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
-  const trimText = text.trim().split(" ")[0];
+  const trimText = text.trim().split(" ")[0]; // this will remove the space then split it to take the first index and assign it to new variable
   // console.log(text.trim().split(" ")[0]);
   if (text === "quit\n" || text === "exit\n") {
     quit();
   } else if (trimText === "hello") {
-    hello(text.replace("\n", ""));
+    hello(text.replace("\n", "")); //it will replace the \n from the line
   } else if (text === "help\n") {
     help();
   } else {
@@ -62,7 +62,7 @@ function unknownCommand(c) {
  * @returns {void}
  */
 function hello(text) {
-  console.log(text + "!");
+  console.log(text + "!"); //it will take the passed argument which is text and returns it with !
 }
 
 /**
@@ -82,7 +82,7 @@ function quit() {
  */
 function help() {
   console.log(
-    "help: display list of all possible commands \nexit or quit: exits the app \nhello: Says hello!"
+    "help: display list of all possible commands \nexit or quit: exits the app \nhello: hello + your input!"
   );
 }
 
