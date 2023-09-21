@@ -52,6 +52,10 @@ function onDataReceived(text) {
     //this will check if the user's input starts with remove
     const removedTask = txt.trim(); //if its true it will remove whitespaces and assign it to removedTask
     remove(removedTask); // calls remove function and pass removedTask as arg
+  } else if (txt.startsWith("edit")) {
+    //if the text variable is edit then the list function will be called
+    const editTask = txt.substring(4).trim();
+    edit(editTask);
   } else {
     unknownCommand(text);
   }
@@ -100,8 +104,7 @@ function help() {
     "\nlist: display the list",
     "\nadd(newTask): add a new task to the list",
     "\nremove: remove the last task from the list",
-    "\nremove 1: remove the first task from the list",
-    "\nremove 2: remove the second task from the list"
+    "\nremove <index>: remove corresponding task"
   );
 }
 
@@ -139,21 +142,46 @@ function add(newTask) {
  *
  * @returns {void}
  */
+// function remove(removedTask) {
+//   if (removedTask === "remove") {
+//     listItems.splice(listItems.length - 1, 1); //removes last element from array
+//     console.log(listItems);
+//   } else {
+//     for(let i=0; i< listItems.length; i++) {
+//       listItems.splice(listItems.length - 1, i)
+//     }
+//   }
 function remove(removedTask) {
-  if (removedTask === "remove") {
-    listItems.splice(listItems.length - 1, 1); //removes last element from array
-    console.log(listItems);
-  } else if (removedTask === "remove 1") {
-    listItems.splice(0, 1); //removes first element from the array
-    console.log(listItems);
-  } else if (removedTask === "remove 2") {
-    listItems.splice(1, 1); //removes second element from the array
-    console.log(listItems);
+  if (removedTask.trim().length == 6) {
+    listItems.pop();
+    console.log("Last element Removed succesfully");
   } else if (parseInt(removedTask.split(" ")[1]) > listItems.length) {
-    //parseInt will parse the integer part of the string so if we put remove 3 it will take it as 3 < length of the listItems
+    //it will split the value of the removedTask to elements and change the element at index 1 to integer bu using parseInt
+    //if the integer is greater than the number of elements in the listItems it will give the following output
     console.log("You entered a number that does not exist!");
+  } else {
+    let index = removedTask.slice(6, removedTask.length).trim() - 1;
+    listItems.splice(index, 1);
+    console.log(`Task ${index + 1} Removed succesfully`);
   }
 }
+
+/**
+ * edit function
+ *
+ * @returns {void}
+ */
+// function edit(editTask) {
+//   //we passed argument newTask
+//   // let editTask = text.slice(4, text.length).trim();
+//   let index = editTask.trim().split(" ")[1] - 1;
+//   console.log(editTask);
+//   let NewText = editTask.slice(4, editTask.length).trim();
+//   // let new_text = text.slice(7, text.length);
+//   if (text.length === 4) {
+//     console.log("Error");
+//   }
+// }
 
 // The following line starts the application
 startApp("Anitta Sleiman");
