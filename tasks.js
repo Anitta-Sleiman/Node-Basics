@@ -149,6 +149,9 @@ function remove(removedTask) {
   } else if (removedTask === "remove 2") {
     listItems.splice(1, 1); //removes second element from the array
     console.log(listItems);
+  } else if (parseInt(removedTask.split(" ")[1]) > listItems.length) {
+    //parseInt will parse the integer part of the string so if we put remove 3 it will take it as 3 < length of the listItems
+    console.log("You entered a number that does not exist!");
   }
 }
 
